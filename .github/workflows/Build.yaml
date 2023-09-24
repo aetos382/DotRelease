@@ -24,7 +24,6 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           global-json-file: global.json
-          dotnet-quality: preview
           cache: true
           cache-dependency-path: '**/packages.lock.json'
           source-url: ${{ env.NUGET_SOURCE_URL }}
