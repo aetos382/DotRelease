@@ -36,6 +36,7 @@ jobs:
       - run: >-
           dotnet restore
           --locked-mode
+          -bl:LogFile=restore.binlog
 
       - run: >-
           dotnet build
@@ -46,6 +47,7 @@ jobs:
           --no-incremental
           -p:ContinuousIntegrationBuild=true
           -p:PackageOutputPath=${{ env.PACKAGES_OUTPUT_PATH }}
+          -bl:LogFile=build.binlog
         id: build
 
       - uses: docker/login-action@v3
@@ -65,6 +67,7 @@ jobs:
           -t:PublishContainer
           -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY }}
           -p:ContainerRepository=${{ env.CONTAINER_REPOSITORY }}
+          -bl:LogFile=publish.binlog
         id: publish
 
       - run: dotnet nuget push "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg" --skip-duplicate
@@ -75,3 +78,9 @@ jobs:
           name: NuGet Packages
           path: "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg"
         if: ${{ steps.build.conclusion == 'success' }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Build Logs
+          path: "**/*.binlog"
+        if: ${{ always() }}
