@@ -33,23 +33,6 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: >-
-          dotnet restore
-          --locked-mode
-          -bl:LogFile=restore.binlog
-
-      - run: >-
-          dotnet build
-          --configuration Release
-          --os linux
-          --arch x64
-          --no-restore
-          --no-incremental
-          -p:ContinuousIntegrationBuild=true
-          -p:PackageOutputPath=${{ env.PACKAGES_OUTPUT_PATH }}
-          -bl:LogFile=build.binlog
-        id: build
-
       - uses: docker/login-action@v3
         with:
           registry: ${{ env.CONTAINER_REGISTRY }}
@@ -61,10 +44,11 @@ jobs:
           --configuration Release
           --os linux
           --arch x64
-          --no-restore
-          --no-build
           --no-self-contained
           -t:PublishContainer
+          -p:RestoreLockedMode=true
+          -p:ContinuousIntegrationBuild=true
+          -p:PackageOutputPath=${{ env.PACKAGES_OUTPUT_PATH }}
           -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY }}
           -p:ContainerRepository=${{ env.CONTAINER_REPOSITORY }}
           -bl:LogFile=publish.binlog
