@@ -40,7 +40,8 @@ jobs:
       - run: >-
           dotnet build
           --configuration Release
-          --runtime linux-x64
+          --os linux
+          --arch x64
           --no-restore
           --no-incremental
           -p:ContinuousIntegrationBuild=true
