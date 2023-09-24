@@ -74,14 +74,3 @@ jobs:
           name: NuGet Packages
           path: "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg"
         if: ${{ steps.build.conclusion == 'success' }}
-
-      - uses: docker/scout-action@v0.23.4
-        with:
-          command: quickview,cves,recommendations,compare
-          registry-user: ${{ github.actor }}
-          registry-password: ${{ secrets.GITHUB_TOKEN }}
-          image: "image://${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}:latest"
-          to-latest: true
-          ignore-unchanged: true
-          sarif-file: .sarif/docker-scout.sarif
-        if: ${{ steps.publish.conclusion == 'success' }}
