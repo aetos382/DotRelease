@@ -4,9 +4,9 @@
     "net8.0": {
       "Microsoft.NET.Build.Containers": {
         "type": "Direct",
-        "requested": "[7.0.401, )",
-        "resolved": "7.0.401",
-        "contentHash": "m4G5rXJsVTrL1EXdrJYtwpkfRimGsPIUYWKRNKpxnS71YlAmi8oiZoHu+4vXoXjeWlSEkotIPeL9YjzP65WtKQ=="
+        "requested": "[8.0.100-rc.1.23462.41, )",
+        "resolved": "8.0.100-rc.1.23462.41",
+        "contentHash": "1KKjwNT4rcJc+mFEOtYeB19tWYeWZW918w2yGq7suCqTLj9amvjxhe24UWR/wf9TTZxayUnJoIO3BQzesGwfUQ=="
       }
     },
     "net8.0/linux-x64": {},

@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.0.401" />
+    <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100-rc.1.23462.41" />
   </ItemGroup>
 
 </Project>
