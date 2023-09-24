@@ -60,7 +60,7 @@ jobs:
           --no-build
           --no-self-contained
           -t:PublishContainer
-          -p:ContainerRegistry=ghcr.io
+          -p:ContainerRegistry="ghcr.io/${{ github.actor }}"
         id: publish
 
       - run: dotnet nuget push "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg" --skip-duplicate
