@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: aetos382/DotRelease
+      - uses: aetos382/DotRelease@master
