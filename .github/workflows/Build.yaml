@@ -17,6 +17,8 @@ jobs:
     env:
       NUGET_SOURCE_URL: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
       PACKAGES_OUTPUT_PATH: ${{ github.workspace }}/packages
+      CONTAINER_REGISTRY: ghcr.io
+      CONTAINER_REPOSITORY: ${{ github.repository_owner }}/dot-release
 
     steps:
       - uses: actions/checkout@v4
@@ -47,7 +49,7 @@ jobs:
 
       - uses: docker/login-action@v3
         with:
-          registry: ghcr.io
+          registry: ${{ env.CONTAINER_REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
@@ -60,8 +62,8 @@ jobs:
           --no-build
           --no-self-contained
           -t:PublishContainer
-          -p:ContainerRegistry=ghcr.io
-          -p:ContainerImageName=aetos382/dot-release
+          -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY }}
+          -p:ContainerRepository=${{ env.CONTAINER_REPOSITORY }}
         id: publish
 
       - run: dotnet nuget push "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg" --skip-duplicate
@@ -75,6 +77,8 @@ jobs:
 
       - uses: docker/scout-action@v0.23.4
         with:
-          command: quickview,cves,recommendations
-          image: 'local://ghcr.io/aetos382/dotrelease:latest'
+          command: quickview,cves,recommendations,compare
+          image: "local://${{ env.CONTAINER_REPOSITORY }}:latest"
+          to-latest: true
+          sarif-file: .sarif/docker-scout.sarif
         if: ${{ steps.publish.conclusion == 'success' }}
