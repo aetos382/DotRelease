@@ -52,7 +52,7 @@ jobs:
           -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY }}
           -p:ContainerRepository=${{ env.CONTAINER_REPOSITORY }}
           -bl
-        id: publish
+        id: build
 
       - run: dotnet nuget push "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg" --skip-duplicate
         if: ${{ steps.build.conclusion == 'success' }}
