@@ -7,6 +7,12 @@
         "requested": "[8.0.100-rc.1.23462.41, )",
         "resolved": "8.0.100-rc.1.23462.41",
         "contentHash": "1KKjwNT4rcJc+mFEOtYeB19tWYeWZW918w2yGq7suCqTLj9amvjxhe24UWR/wf9TTZxayUnJoIO3BQzesGwfUQ=="
+      },
+      "Octokit": {
+        "type": "Direct",
+        "requested": "[8.0.0, )",
+        "resolved": "8.0.0",
+        "contentHash": "ORnIFEj4tO5gikwvPTDla1WeM+Ql71L8CgKADl0cZcAwyFRpEzePlzRxtLQ6FrUumGL4Mc+61kj6jTeTECngTw=="
       }
     },
     "net8.0/linux-x64": {},

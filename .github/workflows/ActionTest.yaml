@@ -1,9 +1,7 @@
-name: Test
+name: ActionTest
 
 on:
   push:
-    branches:
-      - master
 
 jobs:
   test:
