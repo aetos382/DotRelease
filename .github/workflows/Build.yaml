@@ -55,7 +55,6 @@ jobs:
         id: build
 
       - run: dotnet nuget push "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg" --skip-duplicate
-        if: ${{ steps.build.conclusion == 'success' }}
 
       - uses: actions/upload-artifact@v3
         with:
