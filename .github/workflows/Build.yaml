@@ -1,0 +1,77 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      packages: write
+
+    runs-on: ubuntu-latest
+
+    env:
+      NUGET_SOURCE_URL: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+      PACKAGES_OUTPUT_PATH: ${{ github.workspace }}/packages
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          global-json-file: global.json
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+          source-url: ${{ env.NUGET_SOURCE_URL }}
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: >-
+          dotnet restore
+          --locked-mode
+
+      - run: >-
+          dotnet build
+          --configuration Release
+          --runtime linux-x64
+          --no-restore
+          --no-incremental
+          -p:ContinuousIntegrationBuild=true
+          -p:PackageOutputPath=${{ env.PACKAGES_OUTPUT_PATH }}
+        id: build
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: >-
+          dotnet publish DotRelease
+          --configuration Release
+          --os linux
+          --arch x64
+          --no-restore
+          --no-build
+          --no-self-contained
+          -t:PublishContainer
+          -p:ContainerRegistry=ghcr.io
+        id: publish
+
+      - run: dotnet nuget push "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg" --skip-duplicate
+        if: ${{ steps.build.conclusion == 'success' }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: NuGet Packages
+          path: "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg"
+        if: ${{ steps.build.conclusion == 'success' }}
+
+      - uses: docker/scout-action@v0.23.4
+        with:
+          command: quickview,cves,recommendations
+          image: 'local://ghcr.io/aetos382/dotrelease:latest'
+        if: ${{ steps.publish.conclusion == 'success' }}

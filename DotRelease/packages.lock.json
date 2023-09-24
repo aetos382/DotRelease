@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net8.0": {
+      "Microsoft.NET.Build.Containers": {
+        "type": "Direct",
+        "requested": "[7.0.401, )",
+        "resolved": "7.0.401",
+        "contentHash": "m4G5rXJsVTrL1EXdrJYtwpkfRimGsPIUYWKRNKpxnS71YlAmi8oiZoHu+4vXoXjeWlSEkotIPeL9YjzP65WtKQ=="
+      }
+    },
+    "net8.0/linux-x64": {},
+    "net8.0/win-x64": {}
+  }
+}
