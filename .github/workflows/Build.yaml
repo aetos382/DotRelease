@@ -54,7 +54,10 @@ jobs:
           -bl
         id: build
 
-      - run: dotnet nuget push "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg" --skip-duplicate
+      - run: >-
+          dotnet nuget push
+          "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg"
+          --skip-duplicate
 
       - uses: actions/upload-artifact@v3
         with:
