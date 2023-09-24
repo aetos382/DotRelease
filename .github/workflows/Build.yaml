@@ -51,7 +51,7 @@ jobs:
           -p:PackageOutputPath=${{ env.PACKAGES_OUTPUT_PATH }}
           -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY }}
           -p:ContainerRepository=${{ env.CONTAINER_REPOSITORY }}
-          -bl:LogFile=publish.binlog
+          -bl
         id: publish
 
       - run: dotnet nuget push "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg" --skip-duplicate
