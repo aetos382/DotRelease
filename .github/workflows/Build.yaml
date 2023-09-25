@@ -53,6 +53,14 @@ jobs:
           -p:ContainerRepository=${{ env.CONTAINER_REPOSITORY }}
           -bl
         id: build
+      
+      - run: >-
+          dotnet test
+          --configuration Release
+          --os linux
+          --arch x64
+          --no-restore
+          --no-build
 
       - run: >-
           dotnet nuget push
