@@ -1,2 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System.CommandLine;
+
+using DotRelease;
+
+var rootCommand = new MainCommand();
+var commandLine = new CliConfiguration(rootCommand);
+
+return commandLine.Invoke(args);
