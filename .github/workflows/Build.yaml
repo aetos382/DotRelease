@@ -68,7 +68,7 @@ jobs:
       - name: Publish PowerShell
         uses: natescherer/publish-powershell-action@v1
         with:
-          target: package
+          target: packages
           token: ${{ secrets.GITHUB_TOKEN }}
           path: 'artifacts/publish/DotRelease.PowerShell/release'
 
