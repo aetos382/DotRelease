@@ -40,7 +40,7 @@ jobs:
 
       - run: >-
           dotnet publish DotRelease.Cli
-          --configuration Release
+          --configuration release
           --os linux
           --arch x64
           --no-self-contained
@@ -52,32 +52,35 @@ jobs:
 
       - run: >-
           dotnet publish DotRelease.PowerShell
-          --configuration Release
+          --configuration release
           --no-self-contained
           -p:ContinuousIntegrationBuild=true
           -bl
 
       - run: >-
           dotnet test
-          --configuration Release
+          --configuration release
           --os linux
           --arch x64
           --no-restore
           --no-build
 
-      - run: >-
-          Get-Module -ListAvailable
-        shell: pwsh
+      - name: Publish PowerShell
+        uses: natescherer/publish-powershell-action@v1
+        with:
+          target: package
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: 'artifacts/publish/DotRelease.PowerShell/release'
 
       - run: >-
           dotnet nuget push
-          'artifacts/package/Release/*.nupkg'
+          'artifacts/package/release/*.nupkg'
           --skip-duplicate
 
       - uses: actions/upload-artifact@v3
         with:
           name: NuGet Packages
-          path: 'artifacts/package/Release/*.nupkg'
+          path: 'artifacts/package/release/*.nupkg'
 
       - uses: actions/upload-artifact@v3
         with:
