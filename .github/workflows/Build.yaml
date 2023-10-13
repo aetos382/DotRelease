@@ -45,17 +45,15 @@ jobs:
           --arch x64
           --no-self-contained
           -t:PublishContainer
-          -p:RestoreLockedMode=true
           -p:ContinuousIntegrationBuild=true
           -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY }}
           -p:ContainerRepository=${{ env.CONTAINER_REPOSITORY }}
           -bl
-      
+
       - run: >-
           dotnet publish DotRelease.PowerShell
           --configuration Release
           --no-self-contained
-          -p:RestoreLockedMode=true
           -p:ContinuousIntegrationBuild=true
           -bl
 
