@@ -1123,7 +1123,7 @@
         "resolved": "6.0.1",
         "contentHash": "vvhLOgRSOvfq5fBv0/Dd1S3N7K2ibO5wp06B5AkuxUpXkgv2aDHw9jB5ZvPg83y9sy+jF9qE7qWybMK46BXBuw=="
       },
-      "dotrelease": {
+      "Aetos.DotRelease": {
         "type": "Project",
         "dependencies": {
           "Fluid.Core": "[2.5.0, )",

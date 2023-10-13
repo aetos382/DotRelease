@@ -1059,7 +1059,7 @@
           "xunit.extensibility.core": "[2.5.1]"
         }
       },
-      "dotrelease": {
+      "Aetos.DotRelease": {
         "type": "Project",
         "dependencies": {
           "Fluid.Core": "[2.5.0, )",

@@ -18,9 +18,6 @@
     <WarningLevel>9999</WarningLevel>
     <UseArtifactsOutput>true</UseArtifactsOutput>
     <RestoreLockedMode Condition="'$(RestorePackagesWithLockFile)' == 'true' and '$(ContinuousIntegrationBuild)' == 'true'">true</RestoreLockedMode>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(IsPackable)' == 'true'">
     <PackageId>Aetos.$(MSBuildProjectName)</PackageId>
     <Authors>aetos</Authors>
     <Company />
@@ -31,10 +28,11 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(IsPackable)' == 'true'">
-    <None Include="..\README.md" Link="README.md">
-      <PackagePath>\</PackagePath>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.md" Link="README.md">
+      <PackagePath>/</PackagePath>
       <Pack>True</Pack>
     </None>
   </ItemGroup>
+
 </Project>
