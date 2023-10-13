@@ -71,6 +71,7 @@ jobs:
           target: packages
           token: ${{ secrets.GITHUB_TOKEN }}
           path: 'artifacts/publish/DotRelease.PowerShell/release'
+        if: ${{ false }}
 
       - run: >-
           dotnet nuget push
