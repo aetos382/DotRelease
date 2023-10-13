@@ -1,0 +1,25 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <GlobalPackageReference Include="Microsoft.Build.CopyOnWrite" Version="1.0.273" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageVersion Include="Fluid.Core" Version="2.5.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="7.0.0" />
+    <PackageVersion Include="Microsoft.NET.Build.Containers" Version="8.0.100-rc.1.23462.41" />
+    <PackageVersion Include="Octokit.GraphQL" Version="0.2.1-beta" />
+    <PackageVersion Include="PolySharp" Version="1.13.2" />
+    <PackageVersion Include="Semver" Version="3.0.0-beta.1" />
+    <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.23407.1" />
+    <PackageVersion Include="System.CommandLine.Hosting" Version="0.4.0-alpha.23407.1" />
+    <PackageVersion Include="System.Interactive.Async" Version="6.0.1" />
+    <PackageVersion Include="System.Management.Automation" Version="7.2.15" />
+    <PackageVersion Include="YamlDotNet" Version="13.7.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+    <PackageVersion Include="xunit" Version="2.5.1" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.1" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.0" />
+  </ItemGroup>
+</Project>

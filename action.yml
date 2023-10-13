@@ -4,4 +4,6 @@ runs:
   using: docker
   image: 'docker://ghcr.io/aetos382/dot-release:latest'
   args:
+    - "--api-token ${{ secrets.GITHUB_TOKEN }}"
+    - "--repository ${{ github.repository }}"
     - '--version'

@@ -126,6 +126,9 @@
   <data name="ReleaseCommandDescription" xml:space="preserve">
     <value>release</value>
   </data>
+  <data name="RepositoryNameOptionDescription" xml:space="preserve">
+    <value>repository</value>
+  </data>
   <data name="VersionCommandDescription" xml:space="preserve">
     <value>version</value>
   </data>

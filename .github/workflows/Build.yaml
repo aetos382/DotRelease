@@ -16,7 +16,6 @@ jobs:
 
     env:
       NUGET_SOURCE_URL: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-      PACKAGES_OUTPUT_PATH: ${{ github.workspace }}/packages
       CONTAINER_REGISTRY: ghcr.io
       CONTAINER_REPOSITORY: ${{ github.repository_owner }}/dot-release
 
@@ -40,7 +39,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - run: >-
-          dotnet publish DotRelease
+          dotnet publish DotRelease.Cli
           --configuration Release
           --os linux
           --arch x64
@@ -48,12 +47,18 @@ jobs:
           -t:PublishContainer
           -p:RestoreLockedMode=true
           -p:ContinuousIntegrationBuild=true
-          -p:PackageOutputPath=${{ env.PACKAGES_OUTPUT_PATH }}
           -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY }}
           -p:ContainerRepository=${{ env.CONTAINER_REPOSITORY }}
           -bl
-        id: build
       
+      - run: >-
+          dotnet publish DotRelease.PowerShell
+          --configuration Release
+          --no-self-contained
+          -p:RestoreLockedMode=true
+          -p:ContinuousIntegrationBuild=true
+          -bl
+
       - run: >-
           dotnet test
           --configuration Release
@@ -63,18 +68,21 @@ jobs:
           --no-build
 
       - run: >-
+          Get-Module -ListAvailable
+        shell: pwsh
+
+      - run: >-
           dotnet nuget push
-          "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg"
+          'artifacts/package/Release/*.nupkg'
           --skip-duplicate
 
       - uses: actions/upload-artifact@v3
         with:
           name: NuGet Packages
-          path: "${{ env.PACKAGES_OUTPUT_PATH }}/*.nupkg"
-        if: ${{ steps.build.conclusion == 'success' }}
+          path: 'artifacts/package/Release/*.nupkg'
 
       - uses: actions/upload-artifact@v3
         with:
           name: Build Logs
-          path: "**/*.binlog"
+          path: '**/*.binlog'
         if: ${{ always() }}

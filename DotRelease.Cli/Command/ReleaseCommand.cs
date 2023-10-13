@@ -1,6 +1,6 @@
 ﻿using System.CommandLine;
 
-namespace DotRelease;
+namespace DotRelease.Cli.Command;
 
 internal sealed class ReleaseCommand :
     CliCommand

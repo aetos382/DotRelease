@@ -1,59 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
-    <Title>DotRelease</Title>
-    <PackageId>Aetos.DotRelease</PackageId>
-    <Authors>aetos</Authors>
-    <Company />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackAsTool>true</PackAsTool>
-    <ToolCommandName>release</ToolCommandName>
-    <PackageProjectUrl>https://github.com/aetos382/DotRelease</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <AnalysisLevel>latest-all</AnalysisLevel>
-    <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fluid.Core" Version="2.4.0" />
-    <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100-rc.1.23462.41">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Octokit" Version="8.0.0" />
-    <PackageReference Include="Semver" Version="3.0.0-beta.1" />
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.23407.1" />
-    <PackageReference Include="YamlDotNet" Version="13.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <PackageReference Include="Fluid.Core" />
+    <PackageReference Include="Octokit.GraphQL" />
+    <PackageReference Include="Semver" />
+    <PackageReference Include="System.Interactive.Async" />
   </ItemGroup>
 
   <ItemGroup>

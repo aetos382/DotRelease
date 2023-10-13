@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DotRelease {
+namespace DotRelease.Cli {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DotRelease {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DotRelease.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DotRelease.Cli.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -84,6 +84,15 @@ namespace DotRelease {
         internal static string ReleaseCommandDescription {
             get {
                 return ResourceManager.GetString("ReleaseCommandDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   repository に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RepositoryNameOptionDescription {
+            get {
+                return ResourceManager.GetString("RepositoryNameOptionDescription", resourceCulture);
             }
         }
         
